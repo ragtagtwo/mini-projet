@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package grpc;
+
+service MessagingService {
+  rpc SendMessage(MessageRequest) returns (MessageResponse);
+  rpc GetMessagesForUser(UserMessagesRequest) returns (UserMessagesResponse);
+}
+
+message MessageRequest {
+  string senderId = 1;
+  string recipientId = 2;
+  string message = 3;
+}
+
+message MessageResponse {
+  string status = 1;
+}
+
+message UserMessagesRequest {
+  string userId = 1;
+}
+
+message UserMessage {
+  string messageId = 1;
+  string senderId = 2;
+  string message = 3;
+}
+
+message UserMessagesResponse {
+  repeated UserMessage messages = 1;
+}
